@@ -1,0 +1,22 @@
+实验3为验证型实验，大家按照实验报告的提示完成实验
+
+以实验中的第一个为例，说明实验过程：
+
+1、在linux下解压buflab-handout.zip
+
+2、采用objdump对bufbomb，生成反汇编文件，比如bufbomb.s，在压缩包中已经提供了一个bufbomb.txt，但是最好在自己的运行环境中执行一下，生成适应自己环境的代码
+
+3、分析第一步的要求，此处涉及到的是smoke函数和getbuf函数，从反汇编文件中找到相应的代码和地址
+
+4、用vim和gedit生成破解的数据文本文件，压缩包中提供了一个文件smoke_hy
+
+5、将该文本文件转为二进制文件（hex2raw存在不兼容，不能执行），可以用工具h2r(源程序为h2r.c)完成转换:  
+
+     ./h2r smoke_hy smoke_raw
+
+对于转换的结果，可以用 xxd ./smoke_raw 查看文件内容，h2r就是将文本内容转为了二进制内容
+
+6、验证，bufbomb需要提供一个用户id，此处可要求同学们用自己的学号做为唯一标识，我在此使用hy，下面提供了两种方式将数据传送给执行文件：
+
+./bufbomb -u hy < smoke_raw
+cat ./smoke_raw | ./bufbomb -u hy
